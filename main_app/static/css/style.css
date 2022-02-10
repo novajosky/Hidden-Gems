@@ -1,0 +1,48 @@
+* {
+    font-family: 'Londrina Shadow';
+}
+
+header {
+    background: url("https://uploads.visitseattle.org/2021/03/30131153/VS_Zoom-Background_Space-Needle.jpg");
+    background-size: cover;  
+    color: yellow;
+}
+
+#nav-wrapper {
+    background: rgb(0,0,0,0.4);
+    font-size: 16px;
+    display: inline;
+}
+
+body {
+    background: #337cb8;
+    color: greenyellow;
+    display: grid;
+    min-height: 100vh;
+    flex-direction: column;
+    font-family: 'Londrina Shadow';
+}
+
+h1 {
+    font-size: 40px;
+}
+
+
+main {
+    flex: 1 0 auto;
+}
+
+@media (max-width: 450px) {
+    h1 {
+        font-size: 30px;
+    }
+    li {
+        display: block;
+        padding: 2px;
+    }
+}
+  
+footer.page-footer {
+    padding-top: 0;
+    text-align: right;
+}
