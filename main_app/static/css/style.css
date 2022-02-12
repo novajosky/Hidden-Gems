@@ -17,9 +17,9 @@ header {
 body {
     background: #337cb8;
     color: greenyellow;
-    display: grid;
+    display: flex;
     min-height: 100vh;
-    flex-direction: column;
+    flex-direction: row;
     font-family: 'Londrina Shadow';
 }
 
