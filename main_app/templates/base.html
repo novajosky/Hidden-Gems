@@ -20,8 +20,13 @@
         <ul class="right">
           <li><a href="/about">About</a></li>
           <li><a href="/gems">View Hidden Gems</a></li>
-          <li><a href="/maps">Map</a></li.
-          <li><a href="/login">Log in</a></li>
+          <li><a href="/maps">Map</a></li>
+          {% if user.is_authenticated %}
+            <li><a href="{% url 'logout' %}">Log Out</a></li>
+          {% else %}
+            <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            <li><a href="{% url 'login' %}">Log in</a></li>
+          {% endif %}
         </ul>
       </div>
     </nav>
