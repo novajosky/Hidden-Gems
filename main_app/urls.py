@@ -6,4 +6,5 @@ urlpatterns = [
   path('about/', views.about, name='about'),
   path('maps/', views.maps, name='maps'),
   path('gems/', views.gems_index, name='index'),
+  path('accounts/signup/', views.signup, name='signup'),
 ]
