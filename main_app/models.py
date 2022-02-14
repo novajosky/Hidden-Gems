@@ -1,5 +1,3 @@
-# from sre_parse import CATEGORIES
-from unicodedata import name
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
@@ -22,9 +20,12 @@ class Gem(models.Model):
     category = models.CharField(
         max_length=1,
         choices=CATEGORIES,
-        default = CATEGORIES[1][1],
+        default = CATEGORIES[0][0],
         )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
         return reverse('detail', kwargs={'gem_id': self.id})

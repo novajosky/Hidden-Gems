@@ -18,7 +18,8 @@ def maps(request):
   return render(request, 'maps.html')
 
 def gems_index(request):
-  return render(request, 'gems/index.html')
+  gems = Gem.objects.filter(user=request.user)
+  return render(request, 'gems/index.html', {'gems': gems})
 
 def gems_detail(request, gem_id):
   gem = Gem.objects.get(id = gem_id)
