@@ -25,7 +25,7 @@ class Gem(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name
+        return f"{self.category()}"
 
     def get_absolute_url(self):
         return reverse('detail', kwargs={'gem_id': self.id})

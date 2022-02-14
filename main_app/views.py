@@ -22,8 +22,8 @@ def gems_index(request):
   return render(request, 'gems/index.html', {'gems': gems})
 
 def gems_detail(request, gem_id):
-  gem = Gem.objects.get(id = gem_id)
-  return render (request, 'gems/detail.html', {
+  gem = Gem.objects.get(id=gem_id)
+  return render(request, 'gems/detail.html', {
     'gem': gem,
   })
 
@@ -37,10 +37,12 @@ class GemCreate(CreateView):
     return super().form_valid(form)
 
 class GemUpdate(UpdateView):
-  pass
-class GemDelete(DeleteView):
-  pass
+  model = Gem
+  fields = ['location', 'coordinates', 'description', 'picture', 'category']
 
+class GemDelete(DeleteView):
+  model = Gem
+  success_url = '/gems/'
 
 
 
