@@ -28,9 +28,10 @@
                       Dropdown
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                      <li><a class="dropdown-item" href="/about">About</a></li>
-                      <li><a class="dropdown-item" href="/gems">View Hidden Gems</a></li>
-                      <li><a class="dropdown-item" href="/maps">Map</a></li>
+                      <li><a class="dropdown-item" href="{% url 'about' %}">About</a></li>
+                      <li><a class="dropdown-item" href="{% url 'gems_create' %}">Create Gem</a></li>
+                      <li><a class="dropdown-item" href="{% url 'index' %}">View Hidden Gems</a></li>
+                      <li><a class="dropdown-item" href="{% url 'maps' %}">Map</a></li>
                       {% if user.is_authenticated %}
                         <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
                       {% else %}
