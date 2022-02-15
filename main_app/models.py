@@ -14,7 +14,8 @@ CATEGORIES = (
 class Gem(models.Model):
     name = models.CharField(max_length=100)
     location = models.CharField(max_length=100)
-    coordinates = models.CharField(max_length=100)
+    latitude = models.FloatField(max_length=100)
+    longitude = models.FloatField(max_length=100)
     description = models.TextField(max_length=300)
     picture = models.CharField(max_length=100)
     category = models.CharField(
@@ -25,7 +26,7 @@ class Gem(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self
+        return f"{ self.name } ({ self.id })"
 
     def get_absolute_url(self):
         return reverse('detail', kwargs={'gem_id': self.id})

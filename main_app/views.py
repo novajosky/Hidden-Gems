@@ -32,7 +32,7 @@ def gems_detail(request, gem_id):
 
 class GemCreate(CreateView):
   model = Gem
-  fields = ['name', 'location', 'coordinates', 'description',  'picture', 'category']
+  fields = ['name', 'location', 'latitude', 'longitude', 'description',  'picture', 'category']
   success_url = '/gems/'
 
   def form_valid(self, form):
@@ -41,7 +41,7 @@ class GemCreate(CreateView):
 
 class GemUpdate(UpdateView):
   model = Gem
-  fields = ['location', 'coordinates', 'description', 'picture', 'category']
+  fields = ['location', 'latitude', 'longitude', 'description', 'picture', 'category']
 
 class GemDelete(DeleteView):
   model = Gem

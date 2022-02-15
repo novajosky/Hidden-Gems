@@ -8,14 +8,25 @@
         <span class="card-title">{{gem.name}}</span>
         <p>Image: {{ gem.image }}</p>
         <p>location: {{ gem.location }}</p>
-        <p>Coordinates: {{ gem.coordinates }}</p>
+        <p>Latitude: {{ gem.latitude }}</p>
+        <p>Longitude: {{ gem.longitude }}</p>
         <p>Description: {{ gem.description }}</p>
         <p>Category: {{ gem.category }}</p>
     </div>
     <div class="card-action">
         <a href="{% url 'gems_update' gem.id %}">Edit</a>
         <a href="{% url 'gems_delete' gem.id %}">Delete</a>
-    </div>    
+    </div> 
+    <div id='map' width="100%" style='height:100px'></div>
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoibWlrZW5vdmEiLCJhIjoiY2t6ajF0ZHd2MDVrMjJvbXE2OG0xbDg3NCJ9.q_wwOsFi-0Pbyhx5ESJfTg'
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v10',
+            center: [-122.21160340070418, 46.11034046835757], // Starting position [lng, lat]
+            zoom: 12, // Starting zoom level
+        });
+    </script>
 </div>
 
 {% endblock %}
