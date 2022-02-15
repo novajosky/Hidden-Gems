@@ -40,12 +40,11 @@
     </form>
     <table class="striped">
       <thead>
-        <tr><th>Date</th><th>Review</th><th>Rating</th></tr>
+        <tr><th>Review</th><th>Rating</th></tr>
       </thead>
       <tbody>
         {% for review in gem.review_set.all %}
           <tr>
-            <td>{{ review.time_stamp }}</td>
             <td>{{ review.content }}</td>
             <td>{{ review.get_rating_display }}</td>
           </tr>

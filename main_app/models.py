@@ -42,7 +42,6 @@ RATINGS = (
 
 class Review(models.Model):
     content = models.TextField(max_length=300)
-    time_stamp = models.DateField()
     rating = models.IntegerField(
         choices=RATINGS,
         default=RATINGS[4][0]
@@ -50,4 +49,4 @@ class Review(models.Model):
     gem = models.ForeignKey(Gem, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.get_rating_display()} on {self.time_stamp}"
+        return f"{self.get_rating_display()}"
