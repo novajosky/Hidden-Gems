@@ -27,14 +27,32 @@
             zoom: 12, // Starting zoom level
         });
         const marker = new mapboxgl.Marker() // initialize a new marker
-<<<<<<< HEAD
-        .setLngLat([-122.21160340070418, 46.11034046835757]) // Marker [lng, lat] coordinates
-        .addTo(map); // Add the marker to the map
-=======
             .setLngLat([{{ gem.longitude }}, {{ gem.latitude }}]) // Marker [lng, lat] coordinates
             .addTo(map); // Add the marker to the map
->>>>>>> mikenovajosky
     </script>
+</div>
+<hr>
+<div class="col sm6">
+    <form action="{% url 'add_review' gem.id %}" method="POST">
+        {% csrf_token %}
+        {{ review_form.as_p }}
+        <input type="submit" class="btn" value="Add Review">
+    </form>
+    <table class="striped">
+      <thead>
+        <tr><th>Date</th><th>Review</th><th>Rating</th></tr>
+      </thead>
+      <tbody>
+        {% for review in gem.review_set.all %}
+          <tr>
+            <td>{{ review.time_stamp }}</td>
+            <td>{{ review.content }}</td>
+            <td>{{ review.get_rating_display }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 </div>
 
 {% endblock %}
