@@ -5,6 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Gem
+from .forms import ReviewForm
 import os
 
 # Define the home view
@@ -26,8 +27,9 @@ def gems_index(request):
 
 def gems_detail(request, gem_id):
   gem = Gem.objects.get(id=gem_id)
+  review_form = ReviewForm()
   return render(request, 'gems/detail.html', {
-    'gem': gem,
+    'gem': gem, 'review_form': review_form
   })
 
 class GemCreate(CreateView):
@@ -46,6 +48,14 @@ class GemUpdate(UpdateView):
 class GemDelete(DeleteView):
   model = Gem
   success_url = '/gems/'
+
+def add_review(request, gem_id):
+  form = ReviewForm(request.POST)
+  if form.is_valid():
+    new_review = form.save(commit=False)
+    new_review.gem_id = gem_id
+    new_review.save()
+  return redirect('detail', gem_id=gem_id)
 
 
 
