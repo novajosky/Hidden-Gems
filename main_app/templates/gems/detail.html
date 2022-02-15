@@ -33,6 +33,11 @@
 </div>
 <hr>
 <div class="col sm6">
+    {% if object %}
+        <h1>Edit</h1>
+    {% else %}
+        <h1>Add Review</h1>
+    {% endif %}
     <form action="{% url 'add_review' gem.id %}" method="POST">
         {% csrf_token %}
         {{ review_form.as_p }}
@@ -48,6 +53,10 @@
             <td>{{ review.content }}</td>
             <td>{{ review.get_rating_display }}</td>
           </tr>
+          <div class="card-action">
+            <a href="{% url 'update_review' gem.id %}">Edit</a>
+            <a href="{% url 'delete_review' gem.id %}">Delete</a>
+        </div> 
         {% endfor %}
       </tbody>
     </table>
