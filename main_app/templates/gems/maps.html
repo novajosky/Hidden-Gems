@@ -7,8 +7,11 @@
         var map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/mapbox/streets-v10',
-            center: [-122.25948, 37.87221], // Starting position [lng, lat]
-            zoom: 12, // Starting zoom level
+            center: [-122.3321, 47.6062], // Starting position [lng, lat]
+            zoom: 4, // Starting zoom level
         });
+        const marker = new mapboxgl.Marker() // initialize a new marker
+            .setLngLat([-122.3321, 47.6062]) // Marker [lng, lat] coordinates
+            .addTo(map); // Add the marker to the map
     </script>
 {% endblock %}
