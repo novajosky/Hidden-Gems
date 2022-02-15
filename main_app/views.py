@@ -4,7 +4,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Gem
+from .models import Gem, Review
 from .forms import ReviewForm
 import os
 
@@ -56,6 +56,15 @@ def add_review(request, gem_id):
     new_review.gem_id = gem_id
     new_review.save()
   return redirect('detail', gem_id=gem_id)
+
+class ReviewUpdate(UpdateView):
+  model = Review
+  fields = ['content', 'rating']
+
+class ReviewDelete(DeleteView):
+  model = Review
+  success_url = '/gems/'
+
 
 
 
