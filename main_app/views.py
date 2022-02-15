@@ -5,6 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Gem
+import os
 
 # Define the home view
 def home(request):
@@ -15,7 +16,9 @@ def about(request):
 
 @login_required
 def maps(request):
-  return render(request, 'maps.html')
+  mapbox_access_token = 'pk.eyJ1IjoibWlrZW5vdmEiLCJhIjoiY2t6ajF0ZHd2MDVrMjJvbXE2OG0xbDg3NCJ9.q_wwOsFi-0Pbyhx5ESJfTg'
+  return render(request, 'gems/maps.html', 
+    { 'mapbox_access_token' : mapbox_access_token })
 
 def gems_index(request):
   gems = Gem.objects.filter(user=request.user)
@@ -74,3 +77,6 @@ def signup(request):
   form = UserCreationForm()
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
+
+def some_function(request):
+  secret_key = os.environ['SECRET_KEY']
