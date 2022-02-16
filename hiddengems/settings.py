@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
+import django_on_heroku
 from pathlib import Path
 import environ
 environ.Env()
@@ -127,3 +127,5 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/gems/'
 LOGOUT_REDIRECT_URL = '/'
+
+django_on_heroku.settings(locals())
