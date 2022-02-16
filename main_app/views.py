@@ -10,8 +10,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Gem, Review, Photo
 from .forms import ReviewForm
 
-def map_function(request):
-  MAP_KEY = os.environ['MAP_KEY']
 
 # Define the home view
 def home(request):
@@ -22,9 +20,9 @@ def about(request):
 
 @login_required
 def maps(request):
-  mapbox_access_token = {{' MAP_KEY '}}
+  mapbox_access_token = os.environ['MAP_KEY']
   return render(request, 'gems/maps.html', 
-    { 'mapbox_access_token' : mapbox_access_token })
+    { 'MAP_KEY' : mapbox_access_token })
 
 def gems_index(request):
   gems = Gem.objects.filter(user=request.user)
@@ -34,7 +32,7 @@ def gems_detail(request, gem_id):
   gem = Gem.objects.get(id=gem_id)
   review_form = ReviewForm()
   return render(request, 'gems/detail.html', {
-    'gem': gem, 'review_form': review_form
+    'gem': gem, 'review_form': review_form, 'MAP_KEY': os.environ['MAP_KEY']
   })
 
 class GemCreate(CreateView):
@@ -46,11 +44,11 @@ class GemCreate(CreateView):
     form.instance.user = self.request.user
     return super().form_valid(form)
 
-class GemUpdate(UpdateView):
+class GemUpdate(LoginRequiredMixin, UpdateView):
   model = Gem
   fields = ['location', 'latitude', 'longitude', 'description', 'category']
 
-class GemDelete(DeleteView):
+class GemDelete(LoginRequiredMixin, DeleteView):
   model = Gem
   success_url = '/gems/'
 
@@ -62,11 +60,11 @@ def add_review(request, gem_id):
     new_review.save()
   return redirect('detail', gem_id=gem_id)
 
-class ReviewUpdate(UpdateView):
+class ReviewUpdate(LoginRequiredMixin, UpdateView):
   model = Review
   fields = ['content', 'rating']
 
-class ReviewDelete(DeleteView):
+class ReviewDelete(LoginRequiredMixin, DeleteView):
   model = Review
   success_url = '/gems/'
 
@@ -90,24 +88,9 @@ def add_photo(request, gem_id):
             print(e)
     return redirect('detail', gem_id=gem_id)
 
-class PhotoDelete(DeleteView):
+class PhotoDelete(LoginRequiredMixin, DeleteView):
   model = Photo
   success_url = '/gems/'
-
-####### Need to need to add to class base views
-## refer to cat collector
-# class CatCreate(LoginRequiredMixin, CreateView):
-
-
-####### Need to need to add to see users added hidden gems
-# gems = Gem.objects.filter(user=request.user)
-
-####### Need to need to add to the create function
-  # def form_valid(self, form):
-  #   # Assign the logged in user (self.request.user)
-  #   form.instance.user = self.request.user  # form.instance is the cat
-  #   # Let the CreateView do its job as usual
-  #   return super().form_valid(form)
 
 def signup(request):
   error_message = ''
