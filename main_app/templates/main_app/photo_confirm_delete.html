@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1>Delete Photo</h1>
+
+  <h4>Are you sure you want to delete <span class="teal-text">Your Photo</span>?</h4>
+
+  <form action="" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Yes - Delete!" class="btn">
+    <a href="{% url 'delete_photo' object.id %}">Cancel</a>
+  </form>
+{% endblock %}

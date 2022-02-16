@@ -12,6 +12,7 @@ urlpatterns = [
   path('gems/<int:pk>/update/', views.GemUpdate.as_view(), name='gems_update'),
   path('gems/<int:pk>/delete/', views.GemDelete.as_view(), name='gems_delete'),
   path('gems/<int:gem_id>/add_photo/', views.add_photo, name='add_photo'),
+  path('gems/<int:pk>/photo_delete/', views.PhotoDelete.as_view(), name='photo_delete'),
   path('gems/<int:gem_id>/add_review/', views.add_review, name='add_review'),
   path('gems/<int:pk>/delete_review/', views.ReviewDelete.as_view(), name='delete_review'),
   path('gems/<int:pk>/update_review/', views.ReviewUpdate.as_view(), name='update_review'),

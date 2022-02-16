@@ -90,6 +90,9 @@ def add_photo(request, gem_id):
             print(e)
     return redirect('detail', gem_id=gem_id)
 
+class PhotoDelete(DeleteView):
+  model = Photo
+  success_url = '/gems/'
 
 ####### Need to need to add to class base views
 ## refer to cat collector
