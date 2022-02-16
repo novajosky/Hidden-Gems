@@ -19,7 +19,7 @@
     </div> 
     <div id='map' width="100%" style='height:100px'></div>
     <script>
-        mapboxgl.accessToken = 'pk.eyJ1IjoibWlrZW5vdmEiLCJhIjoiY2t6ajF0ZHd2MDVrMjJvbXE2OG0xbDg3NCJ9.q_wwOsFi-0Pbyhx5ESJfTg'
+        mapboxgl.accessToken = {{' MAP_KEY '}}
         var map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/mapbox/streets-v10',
@@ -54,8 +54,8 @@
             <td>{{ review.get_rating_display }}</td>
           </tr>
           <div class="card-action">
-            <a href="{% url 'update_review' gem.id %}">Edit</a>
-            <a href="{% url 'delete_review' gem.id %}">Delete</a>
+            <td><a href="{% url 'update_review' gem.id %}">Edit</a></td>
+            <td><a href="{% url 'delete_review' gem.id %}">Delete</a></td>
         </div> 
         {% endfor %}
       </tbody>

@@ -1,12 +1,14 @@
+import os
+import boto3
+import uuid
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Gem, Review
+from .models import Gem, Review, Photo
 from .forms import ReviewForm
-import os
 
 # Define the home view
 def home(request):
