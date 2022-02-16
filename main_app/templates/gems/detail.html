@@ -16,7 +16,7 @@
       <input type="submit" class="btn" value="Upload Photo">
     </form>
     {% for photo in gem.photo_set.all %}
-      <a href="{% url 'delete_photo' gem.id %}">Delete</a>
+      <a href="{% url 'photo_delete' photo.id %}">Delete</a>
     {% endfor %}
 </div>
 
