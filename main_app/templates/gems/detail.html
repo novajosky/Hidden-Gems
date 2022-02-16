@@ -2,6 +2,23 @@
 {% block content %}
 
 <h1>Gem Details</h1>
+<div class="card">
+  {% for photo in gem.photo_set.all %}
+    <img class="responsive-img card-panel" src="{{photo.url}}">
+{% empty %}
+    <div class="card-panel teal-text center-align">No Photos Uploaded</div>
+    {% endfor %}
+  
+    <form action="{% url 'add_photo' gem.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
+      {% csrf_token %}
+      <input type="file" name="photo-file">
+      <br><br>
+      <input type="submit" class="btn" value="Upload Photo">
+    </form>
+    {% for photo in gem.photo_set.all %}
+      <a href="{% url 'delete_photo' gem.id %}">Delete</a>
+    {% endfor %}
+</div>
 
 <div class="card">
     <div class ="card-content">
