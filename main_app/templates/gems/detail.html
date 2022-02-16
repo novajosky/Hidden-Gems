@@ -2,25 +2,11 @@
 {% block content %}
 
 <h1>Gem Details</h1>
-<div class="card">
-    {% for photo in gem.photo_set.all %}
-      <img class="responsive-img card-panel" src="{{photo.url}}">
-    {% empty %}
-      <div class="card-panel teal-text center-align">No Photos Uploaded</div>
-    {% endfor %}
-    <form action="{% url 'add_photo' gem.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
-        {% csrf_token %}
-        <input type="file" name="photo-file">
-        <br><br>
-        <input type="submit" class="btn" value="Upload Photo">
-    </form>
-    <div class="card-action">
-        <a href="{% url 'photo_delete' gem.id %}">Delete Photo</a>
-      </div>    
-</div>
+
 <div class="card">
     <div class ="card-content">
         <span class="card-title">{{gem.name}}</span>
+        <p>Image: {{ gem.image }}</p>
         <p>location: {{ gem.location }}</p>
         <p>Latitude: {{ gem.latitude }}</p>
         <p>Longitude: {{ gem.longitude }}</p>
@@ -32,18 +18,6 @@
         <a href="{% url 'gems_delete' gem.id %}">Delete</a>
     </div> 
     <div id='map' width="100%" style='height:100px'></div>
-    <script>
-        mapboxgl.accessToken = {{' MAP_KEY '}}
-        var map = new mapboxgl.Map({
-            container: 'map',
-            style: 'mapbox://styles/mapbox/streets-v10',
-            center: [{{ gem.longitude }}, {{ gem.latitude }}], // Starting position [lng, lat]
-            zoom: 12, // Starting zoom level
-        });
-        const marker = new mapboxgl.Marker() // initialize a new marker
-            .setLngLat([{{ gem.longitude }}, {{ gem.latitude }}]) // Marker [lng, lat] coordinates
-            .addTo(map); // Add the marker to the map
-    </script>
 </div>
 <hr>
 <div class="col sm6">
@@ -77,4 +51,16 @@
   </div>
 </div>
 
+    <script>
+        mapboxgl.accessToken = '{{ MAP_KEY }}'
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v10',
+            center: [{{ gem.longitude }}, {{ gem.latitude }}], // Starting position [lng, lat]
+            zoom: 10, // Starting zoom level
+        });
+        const marker = new mapboxgl.Marker() // initialize a new marker
+            .setLngLat([{{ gem.longitude }}, {{ gem.latitude }}]) // Marker [lng, lat] coordinates
+            .addTo(map); // Add the marker to the map
+    </script>
 {% endblock %}

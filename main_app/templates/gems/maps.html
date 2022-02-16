@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
     <h1>Map time!</h1>
-    <div id='map' width="100%" style='height:400px'></div>
+    <div id='map' width="100%" style='height:300px'></div>
     <script>
-        mapboxgl.accessToken = 'pk.eyJ1IjoibWlrZW5vdmEiLCJhIjoiY2t6ajF0ZHd2MDVrMjJvbXE2OG0xbDg3NCJ9.q_wwOsFi-0Pbyhx5ESJfTg'
+        mapboxgl.accessToken = '{{ MAP_KEY }}'
         var map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/mapbox/streets-v10',
             center: [-122.3321, 47.6062], // Starting position [lng, lat]
-            zoom: 4, // Starting zoom level
+            zoom: 11, // Starting zoom level
         });
         const marker = new mapboxgl.Marker() // initialize a new marker
             .setLngLat([-122.3321, 47.6062]) // Marker [lng, lat] coordinates
