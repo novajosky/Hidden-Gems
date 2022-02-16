@@ -18,7 +18,6 @@ class Gem(models.Model):
     latitude = models.FloatField(max_length=100)
     longitude = models.FloatField(max_length=100)
     description = models.TextField(max_length=300)
-    picture = models.CharField(max_length=100)
     category = models.CharField(
         max_length=1,
         choices=CATEGORIES,
@@ -53,6 +52,7 @@ class Review(models.Model):
 
 class Photo(models.Model):
     url = models.CharField(max_length=200)
+    gem = models.ForeignKey(Gem, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"Photo for gem_id: {self.gem_id} @{self.url}"
