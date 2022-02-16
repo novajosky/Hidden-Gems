@@ -61,12 +61,9 @@ def add_review(request, gem_id):
     new_review.save()
   return redirect('detail', gem_id=gem_id)
 
-class ReviewUpdate(LoginRequiredMixin, UpdateView):
-  model = Review
-  fields = ['content', 'rating']
-
 class ReviewDelete(LoginRequiredMixin, DeleteView):
   model = Review
+  template = "/main_app/_confirm_delete.html"
   success_url = '/gems/'
 
 def add_photo(request, gem_id):

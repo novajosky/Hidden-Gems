@@ -14,6 +14,5 @@ urlpatterns = [
   path('gems/<int:gem_id>/add_photo/', views.add_photo, name='add_photo'),
   path('photo/<int:pk>/delete/', views.PhotoDelete.as_view(), name='photo_delete'),
   path('gems/<int:gem_id>/add_review/', views.add_review, name='add_review'),
-  path('gems/<int:pk>/delete_review/', views.ReviewDelete.as_view(), name='delete_review'),
-  path('gems/<int:pk>/update_review/', views.ReviewUpdate.as_view(), name='update_review'),
+  path('review/<int:pk>/delete/', views.ReviewDelete.as_view(), name='delete_review'),
 ]

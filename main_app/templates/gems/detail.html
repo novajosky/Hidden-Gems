@@ -59,8 +59,7 @@
             <td>{{ review.get_rating_display }}</td>
           </tr>
           <div class="card-action">
-            <td><a href="{% url 'update_review' gem.id %}">Edit</a></td>
-            <td><a href="{% url 'delete_review' gem.id %}">Delete</a></td>
+            <td><a href="{% url 'delete_review' review.id %}">Delete</a></td>
         </div> 
         {% endfor %}
       </tbody>
