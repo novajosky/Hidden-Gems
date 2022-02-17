@@ -13,7 +13,23 @@
     <table>
       {{ form.as_table }}
     </table>
+    <button class="btn" id="locationbtn" disabled>Use Current Location</button>
     <input type="submit" value="Submit!" class="btn">
   </form>
-  
+  <script>
+    const btn = document.getElementById('locationbtn');
+    const latEl = document.getElementById('id_latitude');
+    const lngEl = document.getElementById('id_longitude');
+    let lat, lng;
+    navigator.geolocation.getCurrentPosition(function(result){
+      btn.disabled = false;
+      lat = result.coords.latitude;
+      lng = result.coords.longitude;
+    })
+    btn.addEventListener('click', function(evt){
+      evt.preventDefault();
+      latEl.value = lat;
+      lngEl.value = lng;
+    })
+  </script>
   {% endblock %}
