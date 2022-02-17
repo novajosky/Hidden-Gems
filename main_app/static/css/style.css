@@ -9,4 +9,9 @@ body {
 
 img {
     max-height: 300px;
+    object-fit: cover;
+}
+
+.row {
+    padding: 0px;
 }
