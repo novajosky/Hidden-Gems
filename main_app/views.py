@@ -16,9 +16,6 @@ from .forms import ReviewForm
 def home(request):
     return render(request, 'base.html')
 
-def about(request):
-  return render(request, 'about.html')
-
 # @login_required
 def maps(request):
   mapbox_access_token = os.environ['MAP_KEY']
