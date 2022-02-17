@@ -7,11 +7,18 @@
         var map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/mapbox/streets-v10',
-            center: [-122.3321, 47.6062], // Starting position [lng, lat]
-            zoom: 11, // Starting zoom level
+            center: [-111.8910, 40.7608], // Starting position [lng, lat]
+            zoom: 3, // Starting zoom level
         });
-        const marker = new mapboxgl.Marker() // initialize a new marker
-            .setLngLat([-122.3321, 47.6062]) // Marker [lng, lat] coordinates
-            .addTo(map); // Add the marker to the map
+
+        const gems = [
+            {% for gem in gems %}
+                {lat: {{ gem.latitude}}, lng: {{ gem.longitude }}, name: "{{ gem.name }}" },
+            {% endfor %}
+        ];
+        gems.forEach(function(gem) {
+            new mapboxgl.Marker()
+            .setLngLat([gem.lng, gem.lat]).addTo(map);
+        })
     </script>
 {% endblock %}
