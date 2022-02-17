@@ -4,21 +4,25 @@
 <h1>Hidden Gems</h1>
 
 {% for gem in gems %}
-  <div class="card">
+<div class="row row-cols-1 row-cols-md-2 g-4">
+  <div class="col">
     <a href="/gems/{{ gem.id }}">
-      <div class="card-content">
-        <span class="card-title">{{ gem.name }}</span>
-        <div>   
-          {% for photo in gem.photo_set.all %}
-            <img class="responsive-img card-panel" src="{{photo.url}}">
-          {% empty %}
-            <div class="card-panel teal-text center-align">No Photos Uploaded</div>
-          {% endfor %}
+      <div class="card">
+        <div class="card-body">
+          <span class="card-title">{{ gem.name }}</span>
+          <div>   
+            {% for photo in gem.photo_set.all %}
+              <img class="responsive-img card-panel" src="{{photo.url}}" style="max-width: 200px;">
+            {% empty %}
+              <div class="card-panel teal-text center-align">No Photos Uploaded</div>
+            {% endfor %}
+          </div>
+          <p>location: {{ gem.location }}</p>
         </div>
-        <p>location: {{ gem.location }}</p>
       </div>
     </a>
   </div>
+</div>
 {% endfor %}
 
 {% endblock %}

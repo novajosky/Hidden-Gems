@@ -18,9 +18,10 @@ def home(request):
 
 # @login_required
 def maps(request):
+  gems = Gem.objects.all()
   mapbox_access_token = os.environ['MAP_KEY']
   return render(request, 'gems/maps.html', 
-    { 'MAP_KEY' : mapbox_access_token })
+    { 'MAP_KEY' : mapbox_access_token, 'gems': gems })
 
 def gems_index(request):
   gems = Gem.objects.all
