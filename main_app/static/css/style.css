@@ -80,10 +80,10 @@ img {
     height: 15px;
     width: 15px;
     margin: 0 2px;
-    background-color: #bbb;
+    background-color: rgba(var(--bs-dark-rgb),var(--bs-bg-opacity))!important;
     border-radius: 50%;
     display: inline-block;
-    transition: background-color 0.6s ease;
+    transition: background-color 1s ease;
   }
   
   .active, .dot:hover {
@@ -93,9 +93,9 @@ img {
   /* Fading animation */
   .fade {
     -webkit-animation-name: fade;
-    -webkit-animation-duration: 1.5s;
+    -webkit-animation-duration: 3s;
     animation-name: fade;
-    animation-duration: 1.5s;
+    animation-duration: 3s;
   }
   
   @-webkit-keyframes fade {
