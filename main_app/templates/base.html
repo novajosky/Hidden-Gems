@@ -31,11 +31,11 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                       <li><a class="dropdown-item" href="{% url 'about' %}">About</a></li>
-                      <li><a class="dropdown-item" href="{% url 'gems_create' %}">Create Gem</a></li>
                       <li><a class="dropdown-item" href="{% url 'index' %}">View Hidden Gems</a></li>
                       <li><a class="dropdown-item" href="{% url 'maps' %}">Map</a></li>
                       {% if user.is_authenticated %}
-                        <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
+                      <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
+                      <li><a class="dropdown-item" href="{% url 'gems_create' %}">Create Gem</a></li>
                       {% else %}
                         <li><a class="dropdown-item" href="{% url 'signup' %}">Sign Up</a></li>
                         <li><a class="dropdown-item" href="{% url 'login' %}">Log in</a></li>

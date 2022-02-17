@@ -8,7 +8,13 @@
     <a href="/gems/{{ gem.id }}">
       <div class="card-content">
         <span class="card-title">{{ gem.name }}</span>
-        <p>Image: {{ gem.image }}</p>
+        <div>   
+          {% for photo in gem.photo_set.all %}
+            <img class="responsive-img card-panel" src="{{photo.url}}">
+          {% empty %}
+            <div class="card-panel teal-text center-align">No Photos Uploaded</div>
+          {% endfor %}
+        </div>
         <p>location: {{ gem.location }}</p>
       </div>
     </a>
