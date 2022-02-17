@@ -88,7 +88,7 @@ def add_photo(request, gem_id):
 
 class PhotoDelete(LoginRequiredMixin, DeleteView):
   model = Photo
-  template = "/main_app/photo_confirm_delete.html"
+  # template = "/main_app/photo_confirm_delete.html"
   success_url = '/gems/'
 
 def signup(request):
