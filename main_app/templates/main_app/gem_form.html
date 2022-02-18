@@ -18,20 +18,20 @@
   <input type="submit" value="Submit!" class="btn btn-outline-secondary">
 </form>
 </div>
-  <script>
-    const btn = document.getElementById('locationbtn');
-    const latEl = document.getElementById('id_latitude');
-    const lngEl = document.getElementById('id_longitude');
-    let lat, lng;
-    navigator.geolocation.getCurrentPosition(function(result){
-      btn.disabled = false;
-      lat = result.coords.latitude;
-      lng = result.coords.longitude;
-    })
-    btn.addEventListener('click', function(evt){
-      evt.preventDefault();
-      latEl.value = lat;
-      lngEl.value = lng;
-    })
-  </script>
+<script>
+  const btn = document.getElementById('locationbtn');
+  const latEl = document.getElementById('id_latitude');
+  const lngEl = document.getElementById('id_longitude');
+  let lat, lng;
+  navigator.geolocation.getCurrentPosition(function(result){
+    btn.disabled = false;
+    lat = result.coords.latitude;
+    lng = result.coords.longitude;
+  })
+  btn.addEventListener('click', function(evt){
+    evt.preventDefault();
+    latEl.value = lat;
+    lngEl.value = lng;
+  })
+</script>
   {% endblock %}
