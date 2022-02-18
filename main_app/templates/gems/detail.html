@@ -16,6 +16,7 @@
     <div class="d-flex flex-column bd-highlight mb-3">
       <form action="{% url 'add_photo' gem.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
         {% csrf_token %}
+    {% if user == gem.user %}
         <div class="text-center">
           <input class="btn btn-outline-secondary" type="file" name="photo-file">
         </div>
@@ -28,6 +29,7 @@
         <a class="btn btn-outline-danger" href="{% url 'photo_delete' photo.id %}">Delete</a>
       </div>
       {% endfor %}
+    {% endif %}
     </div>
   </div>
   <div class="card">
@@ -42,8 +44,10 @@
         </ul>
     </div>
       <div class="text-center">
+        {% if user == gem.user %}
             <a class="btn btn-outline-secondary" href="{% url 'gems_update' gem.id %}">Edit Gem</a>
             <a class="btn btn-outline-danger" href="{% url 'gems_delete' gem.id %}">Delete Gem</a>
+        {% endif %}
       </div> 
 </div> 
 
@@ -54,24 +58,28 @@
 
 
 
-<div class="col sm6">
-  <h1>Add Review</h1>
-    <form action="{% url 'add_review' gem.id %}" method="POST">
+<div class="container">
+    <h1 class="row d-flex justify-content-center">Add Review</h1>
+    <form class="row" action="{% url 'add_review' gem.id %}" method="POST">
         {% csrf_token %}
-        {{ review_form.as_p }}
-        <button type="submit">Add Review</button>
+        <div class="d-flex flex-row bd-highlight align-items-end justify-content-center">
+          {{ review_form.as_p }}
+        </div>
+        <button class="btn btn-outline-secondary" type="submit">Add Review</button>
     </form>
-  <div>Review</div>
-  <div>Rating</div>
-  {% for review in gem.review_set.all %}
-    <div>{{ review.content }}</div>
-    <div>{{ review.get_rating_display }}</div>
-      <button type="submit" class="btn-sm">
-        <a href="{% url 'delete_review' review.id %}">Delete</a>
-      </button>
-  {% endfor %}
-</div>
+    <div class="row">
+      <h4 class="col">Reviews</h4>
+      <h4 class="col d-flex flex-row bd-highlight">Ratings</h4>
+    </div>
+    {% for review in gem.review_set.all %}
+    <div class="row">
+      <div class="col d-flex justify-content-evenly border border-secondary border-1 rounded-end">{{ review.content }}</div>
+      <div class="col d-flex flex-row bd-highlight"> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{ review.get_rating_display }}</div>
 
+      <a class="col btn btn-outline-danger" style="max-width: 70px;" href="{% url 'delete_review' review.id %}">Delete</a>
+    </div>   
+    {% endfor %}
+  </div>
 <script>
   mapboxgl.accessToken = '{{ MAP_KEY }}'
   var map = new mapboxgl.Map({
