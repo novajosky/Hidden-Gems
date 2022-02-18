@@ -8,38 +8,16 @@
 <br>
   <h1 class="text-center">Add Gem</h1>
 {% endif %}
-<form class="text-center" method="POST">
+<div class="text-center">
 <form action="" method="POST">
   {% csrf_token %}
-  <div class ="container w-50">
-    <div class="form-floating mb-3">
-      <input type="Gem Name" class="form-control" id="floatingInput" placeholder="Chandelier Tree">
-      <label for="floatingInput">Gem Name</label>
-    </div>
-    <div class="form-floating mb-3">
-      <input type="Location" class="form-control" id="floatingInput" placeholder="Location">
-      <label for="floatingInput">City, State</label>
-    </div>
-    <div class="form-floating mb-3">
-      <input type="Latitude" class="form-control" id="floatingInput" placeholder="47.2918">
-      <label for="floatingInput">Latitude</label>
-    </div>
-    <div class="form-floating mb-3">
-      <input type="Longitude" class="form-control" id="floatingInput" placeholder="-147.2918">
-      <label for="floatingInput">Longitude</label>
-    </div>
-    <div class="form-floating mb-3">
-      <input type="Description" class="form-control" id="floatingInput" placeholder="hvjhv">
-      <label for="floatingInput">Description</label>
-    </div>
-    <div class="form-floating mb-3">
-    <input type="Category" class="form-control" id="floatingInput" placeholder="hvjhv">
-    <label for="floatingInput">Category</label>
-    </div>
-  </div>
-  <button type="btn" id="locationbtn" disabled>Use Current Location</button>
-  <button type="submit">SUBMIT</button>
+  <table class="table table-light table-hover">
+    {{ form.as_table }}
+  </table>
+  <button class="btn" id="locationbtn" disabled>Use Current Location</button>
+  <input type="submit" value="Submit!" class="btn">
 </form>
+</div>
   <script>
     const btn = document.getElementById('locationbtn');
     const latEl = document.getElementById('id_latitude');
@@ -56,5 +34,4 @@
       lngEl.value = lng;
     })
   </script>
-  </form>
   {% endblock %}

@@ -52,14 +52,6 @@ class GemDelete(LoginRequiredMixin, DeleteView):
   model = Gem
   success_url = '/gems/'
 
-  def user_valid(self):
-    self.object = self.get_object()
-    return self.object.user == self.request.user
-
-  def form_valid(self, form):
-    form.instance.user = self.request.user
-    return super().form_valid(form)
-
 @login_required
 def add_review(request, gem_id):
   form = ReviewForm(request.POST)

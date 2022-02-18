@@ -21,7 +21,13 @@
     ];
     gems.forEach(function(gem) {
         new mapboxgl.Marker()
-        .setLngLat([gem.lng, gem.lat]).addTo(map);
+        .setLngLat([gem.lng, gem.lat]).addTo(map)
+        .setPopup(
+            new mapboxgl.Popup({offset: 5})
+                .setHTML(
+                    `<h5>${gem.name}</h5>`
+                )
+        );
     })
 </script>
 {% endblock %}
