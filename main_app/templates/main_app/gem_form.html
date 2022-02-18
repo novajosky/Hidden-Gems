@@ -6,7 +6,7 @@
   <h1>Edit <span class="teal-text">{{ object.name }}</span></h1>
 {% else %}
 <br>
-  <h1 class="text-center">Add Gem</h1>
+  <h1 class="text-center">Create A Gem</h1>
 {% endif %}
 <div class="text-center">
 <form action="" method="POST">
@@ -14,24 +14,24 @@
   <table class="table table-light table-hover">
     {{ form.as_table }}
   </table>
-  <button class="btn" id="locationbtn" disabled>Use Current Location</button>
-  <input type="submit" value="Submit!" class="btn">
+  <button class="btn btn-outline-secondary" id="locationbtn" disabled>Use Current Location</button>
+  <input type="submit" value="Submit!" class="btn btn-outline-secondary">
 </form>
 </div>
-  <script>
-    const btn = document.getElementById('locationbtn');
-    const latEl = document.getElementById('id_latitude');
-    const lngEl = document.getElementById('id_longitude');
-    let lat, lng;
-    navigator.geolocation.getCurrentPosition(function(result){
-      btn.disabled = false;
-      lat = result.coords.latitude;
-      lng = result.coords.longitude;
-    })
-    btn.addEventListener('click', function(evt){
-      evt.preventDefault();
-      latEl.value = lat;
-      lngEl.value = lng;
-    })
-  </script>
+<script>
+  const btn = document.getElementById('locationbtn');
+  const latEl = document.getElementById('id_latitude');
+  const lngEl = document.getElementById('id_longitude');
+  let lat, lng;
+  navigator.geolocation.getCurrentPosition(function(result){
+    btn.disabled = false;
+    lat = result.coords.latitude;
+    lng = result.coords.longitude;
+  })
+  btn.addEventListener('click', function(evt){
+    evt.preventDefault();
+    latEl.value = lat;
+    lngEl.value = lng;
+  })
+</script>
   {% endblock %}
