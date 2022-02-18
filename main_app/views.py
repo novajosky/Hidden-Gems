@@ -16,7 +16,7 @@ from .forms import ReviewForm
 def home(request):
     return render(request, 'base.html')
 
-# @login_required
+@login_required
 def maps(request):
   gems = Gem.objects.all()
   mapbox_access_token = os.environ['MAP_KEY']
@@ -27,6 +27,7 @@ def gems_index(request):
   gems = Gem.objects.all
   return render(request, 'gems/index.html', {'gems': gems})
 
+@login_required
 def gems_detail(request, gem_id):
   gem = Gem.objects.get(id=gem_id)
   review_form = ReviewForm()
@@ -34,7 +35,7 @@ def gems_detail(request, gem_id):
     'gem': gem, 'review_form': review_form, 'MAP_KEY': os.environ['MAP_KEY']
   })
 
-class GemCreate(CreateView):
+class GemCreate(LoginRequiredMixin, CreateView):
   model = Gem
   fields = ['name', 'location', 'latitude', 'longitude', 'description', 'category']
   success_url = '/gems/'
@@ -51,6 +52,15 @@ class GemDelete(LoginRequiredMixin, DeleteView):
   model = Gem
   success_url = '/gems/'
 
+  def user_valid(self):
+    self.object = self.get_object()
+    return self.object.user == self.request.user
+
+  def form_valid(self, form):
+    form.instance.user = self.request.user
+    return super().form_valid(form)
+
+@login_required
 def add_review(request, gem_id):
   form = ReviewForm(request.POST)
   if form.is_valid():

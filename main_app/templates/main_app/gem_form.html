@@ -9,13 +9,13 @@
 {% endif %}
 
 <form action="" method="POST">
-    {% csrf_token %}
-    <table>
-      {{ form.as_table }}
-    </table>
-    <button class="btn" id="locationbtn" disabled>Use Current Location</button>
-    <input type="submit" value="Submit!" class="btn">
-  </form>
+  {% csrf_token %}
+  <table>
+    {{ form.as_table }}
+  </table>
+  <button type="btn" id="locationbtn" disabled>Use Current Location</button>
+  <button type="submit">SUBMIT</button>
+</form>
   <script>
     const btn = document.getElementById('locationbtn');
     const latEl = document.getElementById('id_latitude');
