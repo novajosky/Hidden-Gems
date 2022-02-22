@@ -21,8 +21,8 @@ This is a place to share and review your favorite hidden gems. From restaurants,
     9.Bootstrap
 
 ### Getting Started
-[Click To Go To App](https://hidden-gems-usa.herokuapp.com/)
-[Click To Go To Trello](https://trello.com/b/PFQS3Pan/hiddengemsusa)
+[Click To Go To App](https://hidden-gems-usa.herokuapp.com/)<br>
+[Click To Go To Trello](https://trello.com/b/PFQS3Pan/hiddengemsusa)<br>
 [Click To Go To PitchDeck](https://docs.google.com/presentation/d/1xwLt744uAEgwiocbp7C4vEVBMQlV_XPpxJx893IKsVk/edit#slide=id.g11398940fd2_0_2)
 
 ## Next Steps
